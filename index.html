@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opis obrazu w przeglądarce</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <h1>Opis obrazu w przeglądarce</h1>
+        <p>
+          Demo lokalnego captioningu obrazów z użyciem transformers.js i WebGPU. Wszystkie dane pozostają na
+          Twoim urządzeniu.
+        </p>
+      </header>
+
+      <section class="card">
+        <div class="upload-area" id="dropzone">
+          <input
+            type="file"
+            id="file-input"
+            accept="image/png,image/jpeg,image/webp"
+            aria-label="Wybierz obraz"
+          />
+          <div class="upload-copy">
+            <h2>Dodaj obraz</h2>
+            <p>Przeciągnij i upuść plik lub kliknij, aby wybrać (PNG, JPG, WebP).</p>
+          </div>
+        </div>
+
+        <div class="preview">
+          <img id="preview-image" alt="Podgląd" />
+          <div class="preview-meta">
+            <span id="preview-resolution">Brak obrazu</span>
+            <span id="preview-size">–</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="controls">
+          <div class="control-group">
+            <label for="backend-select">Tryb inferencji</label>
+            <select id="backend-select">
+              <option value="auto">Auto (WebGPU → WASM)</option>
+              <option value="webgpu">WebGPU</option>
+              <option value="wasm">WASM</option>
+            </select>
+            <span class="hint" id="backend-hint">Sprawdzanie dostępności WebGPU…</span>
+          </div>
+          <div class="control-group">
+            <label for="max-tokens">Max new tokens</label>
+            <input id="max-tokens" type="range" min="20" max="120" value="60" />
+            <span id="max-tokens-value">60</span>
+          </div>
+          <div class="control-group">
+            <label for="temperature">Temperature</label>
+            <input id="temperature" type="range" min="0" max="1" step="0.05" value="0.7" />
+            <span id="temperature-value">0.70</span>
+          </div>
+          <div class="control-group">
+            <label for="beam-size">Beam size</label>
+            <input id="beam-size" type="range" min="1" max="5" value="3" />
+            <span id="beam-size-value">3</span>
+          </div>
+          <div class="control-group toggles">
+            <label>
+              <input type="checkbox" id="two-pass" />
+              2 przebiegi (cold + warm)
+            </label>
+            <label>
+              <input type="checkbox" id="store-thumbnails" checked />
+              Zapisuj miniatury w historii
+            </label>
+          </div>
+        </div>
+        <button id="generate-button" class="primary" disabled>Generuj opis</button>
+        <p class="privacy">Prywatność: obraz nie opuszcza przeglądarki, przetwarzanie jest lokalne.</p>
+      </section>
+
+      <section class="card status" id="status-card">
+        <h2>Postęp modelu</h2>
+        <div class="progress">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p id="status-text">Model nie został jeszcze załadowany.</p>
+      </section>
+
+      <section class="card results">
+        <h2>Wynik</h2>
+        <div class="result-box" id="caption-box">Wgraj obraz, aby wygenerować opis.</div>
+        <div class="metrics">
+          <div>
+            <span class="metric-label">Czas generacji</span>
+            <span id="generation-time">–</span>
+          </div>
+          <div>
+            <span class="metric-label">Backend</span>
+            <span id="backend-used">–</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card history">
+        <div class="history-header">
+          <h2>Historia</h2>
+          <button id="clear-history" class="ghost">Wyczyść</button>
+        </div>
+        <ul id="history-list" class="history-list"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
