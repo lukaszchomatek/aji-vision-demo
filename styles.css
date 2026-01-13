@@ -1,0 +1,260 @@
+:root {
+  color-scheme: light dark;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  background: #0f1117;
+  color: #f4f6fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1b1f2a, #0f1117 60%);
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  margin: 0;
+  color: #b5bdd4;
+  max-width: 720px;
+  line-height: 1.5;
+}
+
+.card {
+  background: rgba(24, 28, 40, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(5, 8, 15, 0.5);
+}
+
+.upload-area {
+  border: 2px dashed rgba(130, 148, 192, 0.5);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(12, 15, 22, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-area input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-area.drag {
+  border-color: #7aa7ff;
+  background: rgba(30, 36, 52, 0.9);
+}
+
+.upload-copy h2 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+}
+
+.preview {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.preview img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #111520;
+}
+
+.preview-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #a6b0c8;
+  font-size: 0.9rem;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  align-items: end;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-group label {
+  font-weight: 600;
+}
+
+.control-group span,
+.hint {
+  font-size: 0.85rem;
+  color: #a6b0c8;
+}
+
+.control-group.toggles label {
+  font-weight: 400;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.primary {
+  margin-top: 24px;
+  background: linear-gradient(135deg, #5b8dff, #8b5cff);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 32px;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: flex-start;
+  box-shadow: 0 10px 20px rgba(89, 120, 255, 0.4);
+}
+
+.primary[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #d6deed;
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.privacy {
+  margin: 16px 0 0;
+  color: #8f9ab6;
+  font-size: 0.9rem;
+}
+
+.status {
+  display: grid;
+  gap: 12px;
+}
+
+.progress {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 8px;
+  width: 0;
+  background: linear-gradient(90deg, #7aa7ff, #8b5cff);
+  transition: width 0.2s ease;
+}
+
+.results .result-box {
+  background: rgba(12, 15, 22, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  min-height: 120px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+  color: #a6b0c8;
+}
+
+.metric-label {
+  display: block;
+  font-size: 0.85rem;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(12, 15, 22, 0.8);
+}
+
+.history-item img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.history-placeholder {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  color: #8f9ab6;
+  text-align: center;
+  padding: 6px;
+}
+
+.history-item .timestamp {
+  color: #8f9ab6;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 720px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .primary {
+    width: 100%;
+  }
+}
